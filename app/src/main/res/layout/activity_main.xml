@@ -7,8 +7,36 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:srcCompat="@drawable/ic_add_white_24dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemListRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="139dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ejercicio 2</string>
+    <string name="videogameTitle">Título</string>
+    <string name="videogameDeveloper">Desarrolladora</string>
+    <string name="videogamePublisher">Distribuidora</string>
+    <string name="videogamePlatform">Plataforma</string>
+    <string name="videogameReleaseDate">Fecha de lanzamiento</string>
+</resources>

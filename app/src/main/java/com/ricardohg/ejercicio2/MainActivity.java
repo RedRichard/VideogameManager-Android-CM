@@ -4,52 +4,98 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+import io.paperdb.Paper;
+
+public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
 
     ArrayList<Videogame> dataList;
     RecyclerView itemListRV;
+    FloatingActionButton btnAddItem;
+    AdapterListItem adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // UI search:
+        // RecycleView:
         itemListRV = findViewById(R.id.itemListRV);
         itemListRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        // Buttons:
+        btnAddItem = findViewById(R.id.btnAddItem);
+
         //------------------------------------------
-        //DATOS
-        /*dataList = new ArrayList<String>();
-
-        for(int i=0; i<=50; i++){
-            dataList.add("Dato #" + i);
-        }*/
-        dataList = new ArrayList<Videogame>();
-        /*String[][] data = {
-                {"Videojuego 1", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 2", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 3", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 4", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 5", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 6", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 7", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 8", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 9", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-                {"Videojuego 10", "Developer 1", "Publisher 1", "Platform 1", "Release Date"},
-        };*/
-
-        for(int i=0; i<=50; i++){
+        // Data test generation:
+        //dataList = new ArrayList<Videogame>();
+        /*for(int i=0; i<=50; i++){
             Videogame game = new Videogame("Videojuego " + i, "Developer", "Publisher", "Platform", "Date");
             dataList.add(game);
-        }
+        }*/
         //-----------------------------------------
 
-        AdapterListItem adapter = new AdapterListItem(dataList);
+        //Paper.book().write("videogames", dataList);
+
+        // Database initialization:
+        Paper.init(getApplicationContext());
+        Paper.book().destroy();
+        // Get data from database:
+        dataList = ReadDatabaseVideogames();
+
+        adapter = new AdapterListItem(dataList);
 
         itemListRV.setAdapter(adapter);
+
+        // On click:
+        btnAddItem.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnAddItem:
+                //Log.d("Mensaje: ", "Click detectado");
+                Intent intent = new Intent(MainActivity.this, NewItemActivity.class);
+                startActivityForResult(intent, 1);
+                break;
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                Videogame newGame = (Videogame) data.getSerializableExtra("newGame");
+                dataList.add(newGame);
+                // Notify Database has changed to Paper:
+                adapter.notifyDataSetChanged();
+                SaveVideogamesToDatabase();
+            }
+        }
+    }
+
+    public ArrayList<Videogame> ReadDatabaseVideogames(){
+        return Paper.book().read("videogames", new ArrayList<Videogame>());
+    }
+
+    public void SaveVideogamesToDatabase(){
+        Paper.book().write("videogames", dataList);
     }
 }

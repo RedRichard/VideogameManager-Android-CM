@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Ejercicio2</string>
+    <string name="app_name">Exercise 2</string>
+    <string name="videogameTitle">Title</string>
+    <string name="videogameDeveloper">Developer</string>
+    <string name="videogamePublisher">Publisher</string>
+    <string name="videogamePlatform">Platform</string>
+    <string name="videogameReleaseDate">Release Date</string>
 </resources>
