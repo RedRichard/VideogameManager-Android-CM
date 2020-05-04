@@ -6,4 +6,10 @@
     <string name="videogamePublisher">Distribuidora</string>
     <string name="videogamePlatform">Plataforma</string>
     <string name="videogameReleaseDate">Fecha de lanzamiento</string>
+    <string name="customPlatform">Otro</string>
+    <string name="fail_name">Nombre no puede estar vacío</string>
+    <string name="fail_publisher">Distribuidora no puede estar vacío</string>
+    <string name="fail_platform">Plataforma no puede estar vacío</string>
+    <string name="fail_release">Lanzamiento no puede estar vacío</string>
+    <string name="item_id_found">ID del elemento:</string>
 </resources>

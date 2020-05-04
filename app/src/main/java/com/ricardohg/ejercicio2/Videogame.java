@@ -3,15 +3,15 @@ package com.ricardohg.ejercicio2;
 import java.io.Serializable;
 
 public class Videogame implements Serializable {
+    int id;
     String title;
-    String developer;
     String publisher;
     String platform;
     String releaseDate;
 
-    public Videogame(String title, String developer, String publisher, String platform, String releaseDate) {
+    public Videogame(String title, String publisher, String platform, String releaseDate) {
+        this.id = 0;
         this.title = title;
-        this.developer = developer;
         this.publisher = publisher;
         this.platform = platform;
         this.releaseDate = releaseDate;
@@ -23,14 +23,6 @@ public class Videogame implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
     }
 
     public String getPublisher() {
@@ -55,5 +47,13 @@ public class Videogame implements Serializable {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -5,4 +5,10 @@
     <string name="videogamePublisher">Publisher</string>
     <string name="videogamePlatform">Platform</string>
     <string name="videogameReleaseDate">Release Date</string>
+    <string name="customPlatform">Other</string>
+    <string name="fail_name">Name can\'t be empty</string>
+    <string name="fail_publisher">Publisher can\'t be empty</string>
+    <string name="fail_platform">Platform can\'t be empty</string>
+    <string name="fail_release">Release can\'t be empty</string>
+    <string name="item_id_found">Item ID:</string>
 </resources>

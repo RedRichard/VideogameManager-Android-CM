@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -58,8 +59,11 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
         itemListRV.setAdapter(adapter);
 
-        // On click:
+        // On click button:
         btnAddItem.setOnClickListener(this);
+
+        // On click recycleview:
+        //itemListRV.addOnItemTouchListener(this);
     }
 
     @Override
@@ -83,10 +87,29 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         if (requestCode == 1){
             if (resultCode == RESULT_OK){
                 Videogame newGame = (Videogame) data.getSerializableExtra("newGame");
+                assert newGame != null;
+                newGame.setId(dataList.size()+1);
+                //Toast.makeText(getApplicationContext(), Integer.toString(newGame.getId()), Toast.LENGTH_SHORT).show();
                 dataList.add(newGame);
                 // Notify Database has changed to Paper:
                 adapter.notifyDataSetChanged();
                 SaveVideogamesToDatabase();
+            }
+        }
+        if (requestCode == 2){
+            if (resultCode == RESULT_OK){
+                Bundle extras = data.getExtras();
+                Videogame auxGame = (Videogame) extras.getSerializable("auxGame");
+                //Videogame originalGame = (Videogame) extras.getSerializable("originalGame");
+
+                /*int auxPos = dataList.indexOf(originalGame);
+                Toast.makeText(getApplicationContext(), Integer.toString(auxPos), Toast.LENGTH_SHORT).show();*/
+
+                dataList.set(auxGame.getId()-1, auxGame);
+                adapter.notifyDataSetChanged();
+                SaveVideogamesToDatabase();
+
+                //Toast.makeText(getApplicationContext(), Integer.toString(auxGame.getId()-1), Toast.LENGTH_SHORT).show();
             }
         }
     }
