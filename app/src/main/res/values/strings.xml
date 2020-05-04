@@ -11,4 +11,6 @@
     <string name="fail_platform">Platform can\'t be empty</string>
     <string name="fail_release">Release can\'t be empty</string>
     <string name="item_id_found">Item ID:</string>
+    <string name="name_entry">Videogame name</string>
+    <string name="publisher_entry">Publisher name</string>
 </resources>

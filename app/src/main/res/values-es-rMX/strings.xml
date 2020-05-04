@@ -12,4 +12,6 @@
     <string name="fail_platform">Plataforma no puede estar vacío</string>
     <string name="fail_release">Lanzamiento no puede estar vacío</string>
     <string name="item_id_found">ID del elemento:</string>
+    <string name="name_entry">Nombre del videojuego</string>
+    <string name="publisher_entry">Nombre del distribuidor</string>
 </resources>

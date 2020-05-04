@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
         // Database initialization:
         Paper.init(getApplicationContext());
-        Paper.book().destroy();
+        //Paper.book().destroy();
         // Get data from database:
         dataList = ReadDatabaseVideogames();
 
